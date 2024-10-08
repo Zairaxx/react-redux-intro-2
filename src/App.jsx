@@ -3,6 +3,7 @@ import './App.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment } from './redux/counterSlice'
 import { addUser } from './redux/userSlice'
+import { getUser } from './redux/userSlice'
 function App() {
 
   let dispatch = useDispatch();
@@ -24,6 +25,13 @@ function App() {
         setUsername(event.target.value)}}/>
       {/* Dispatch en action 'addUser' med ett värde/payload (username) som är ett lokalt state */}
       <button onClick={() => {dispatch(addUser(username))}}>Add user</button>
+
+
+
+
+      <button onClick={() => {dispatch(getUser())}}>Add random user</button>
+
+
       <h2>Users:</h2>
       <ul>
         {users.map((user,i) => <li key={i}>{user}</li>)}
