@@ -22,7 +22,8 @@ function App() {
       <input type="text" onChange={(event) => {
         console.log(username);
         setUsername(event.target.value)}}/>
-      <button onClick={() => {dispatch(addUser("Wario"))}}>Add user</button>
+      {/* Dispatch en action 'addUser' med ett värde/payload (username) som är ett lokalt state */}
+      <button onClick={() => {dispatch(addUser(username))}}>Add user</button>
       <h2>Users:</h2>
       <ul>
         {users.map((user,i) => <li key={i}>{user}</li>)}
