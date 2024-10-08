@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const CounterSlice = createSlice({
     name:"Counter",
-    initialState:{
+    initialState: {
         count:0,
-        posts:[],
+        users:[],
         test:"Test state"
     },
     reducers:{

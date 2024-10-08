@@ -2,10 +2,14 @@ import { useState } from 'react'
 import './App.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment } from './redux/counterSlice'
+import { addUser } from './redux/userSlice'
 function App() {
 
   let dispatch = useDispatch();
   let count = useSelector((store) => store.counterReducer.count)
+  let users = useSelector(store => store.userReducer.users)
+
+  let [username, setUsername] = useState("");
 
   return (
     <>
@@ -14,6 +18,16 @@ function App() {
       <button onClick={() => {dispatch(increment(5))}}>Increment by 5</button>
       <button onClick={() => {dispatch(increment(10))}}>Increment by 10</button>
       <button onClick={() => {dispatch(increment(20))}}>Increment by 20</button>
+
+      <input type="text" onChange={(event) => {
+        console.log(username);
+        setUsername(event.target.value)}}/>
+      <button onClick={() => {dispatch(addUser("Wario"))}}>Add user</button>
+      <h2>Users:</h2>
+      <ul>
+        {users.map((user,i) => <li key={i}>{user}</li>)}
+      </ul>
+
     </>
   )
 }
