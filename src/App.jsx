@@ -9,6 +9,8 @@ function App() {
   let dispatch = useDispatch();
   let count = useSelector((store) => store.counterReducer.count)
   let users = useSelector(store => store.userReducer.users)
+  let status = useSelector((store) => store.userReducer.status);
+
 
   let [username, setUsername] = useState("");
 
@@ -20,6 +22,9 @@ function App() {
       <button onClick={() => {dispatch(increment(10))}}>Increment by 10</button>
       <button onClick={() => {dispatch(increment(20))}}>Increment by 20</button>
 
+
+<hr />
+      <h2>{status}</h2>
       <input type="text" onChange={(event) => {
         console.log(username);
         setUsername(event.target.value)}}/>

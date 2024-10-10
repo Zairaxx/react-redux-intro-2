@@ -6,6 +6,10 @@ export const getUser = createAsyncThunk("User/getUser", async () => {
     return json;
 });
 
+
+
+
+
 const userSlice = createSlice({
     name:"User",
     initialState: {
@@ -19,15 +23,23 @@ const userSlice = createSlice({
             state.users.push(action.payload);
         }
     }, extraReducers: (builder) => {
-        builder.addCase(getUser.fulfilled, (state,action) => {
+        builder
+        .addCase(getUser.fulfilled,
+            (state,action) => {
+            state.status = "Successfully got data!" ;
             let newUser = action.payload.results[0].name.first;
             state.users.push(newUser);
         })
         .addCase(getUser.pending, (state,action) => {
-            console.log("rejected fetch", action.payload);
+            console.log("pending data..", action.payload);
             state.status = "Fetching data...." ;
+        }).addCase(getUser.rejected, (state,action) => {
+            state.status = "NO data found.";
         })
         }
+
+
+
         // {
             // [getUser.fulfilled]: (state,action) => {
             //     console.log("action för getUser", action);
